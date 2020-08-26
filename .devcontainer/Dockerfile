@@ -11,7 +11,9 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
         groupmod --gid $USER_GID vscode \
         && usermod --uid $USER_UID --gid $USER_GID vscode \
         && chmod -R $USER_UID:$USER_GID /home/vscode; \
-    fi
+    fi && \
+    # I know this is bad, but this is a dev environment in a container
+    curl https://cli-assets.heroku.com/install.sh | sh
 
 # [Optional] If your requirements rarely change, uncomment this section to add them to the image.
 # COPY requirements.txt /tmp/pip-tmp/
