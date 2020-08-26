@@ -1,8 +1,9 @@
 import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config.from_object(os.environ.get("APP_SETTINGS", default="config.DevelopmentConfig"))
+app.config.from_object(os.getenv("APP_SETTINGS", "config.DevelopmentConfig"))
 
 @app.route('/')
 def hello_world():
